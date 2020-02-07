@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 export default class App extends React.Component{
 	state = {
 		isLoading:true,//是否展示加载中
@@ -8,39 +9,7 @@ export default class App extends React.Component{
 		keyword:'h',//关键字
 	}
 	componentDidMount() {
-		const url = `https://api.github.com/search/repositories?q=${this.state.keyword}&sort=stars`
-		fetch(url).then(
-			(response) => {
-				console.log('请求成功了');
-			//	response.json()返回值是一个Promise实例
-				return response.json();
-			},
-		)
-			.then(
-				(value) => {
-					console.log('成功的数据',value)
-					const {html_url,name} = value.items[0];
-					this.setState(
-						{
-							isLoading:false,
-							repoName:name,
-							repoUrl:html_url
-						}
-					)
-				}
-			)
-			.catch(
-				(error) => {
-					console.log('失败了',error)
-					this.setState(
-						{
-							isLoading:false,
-							error:error.message,
-						}
-					)
-				}
-			)
-		/*axios.get('https://api.github.com/search/repositories',{params:{q:this.state.keyword,sort:'stars'}}).then(
+		axios.get('https://api.github.com/search/repositories',{params:{q:this.state.keyword,sort:'stars'}}).then(
 			(response) => {
 				const {html_url,name} = response.data.items[0];
 				this.setState(
@@ -59,7 +28,7 @@ export default class App extends React.Component{
 					}
 				)
 			}
-		)*/
+		)
 	}
 
 	render() {
