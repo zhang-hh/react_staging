@@ -6,9 +6,22 @@ class App extends Component{
     state = {
         comments:[
             {id:1234,name:'zhh',content:'dfghj'},
-            {id:12345,name:'zhh',content:'dfghj'},
-            {id:12346,name:'zhh',content:'dfghj'},
+            {id:12345,name:'zhx',content:'dfghjhh'},
+            {id:12346,name:'qf',content:'dfghjjjj'},
         ]
+    }
+    addComment = (commentObj) =>{
+        //	1.获取原状态
+        let {comments} = this.state;
+        comments.unshift(commentObj);
+        this.setState({comments});
+    }
+    deleteComment = (id) =>{
+        let {comments} = this.state;
+        comments = comments.filter((commentObj) =>{
+            return commentObj.id !== id
+        })
+        this.setState({comments});
     }
 	render() {
         const {comments} = this.state
@@ -25,8 +38,8 @@ class App extends Component{
                         </div>
                     </header>
                     <div className="container">
-					<Add/>
-					<Show comments={comments}/>
+					<Add addComment = {this.addComment}/>
+					<Show comments={comments} deleteComment = {this.deleteComment}/>
                     </div>
                 </div>
             </div>

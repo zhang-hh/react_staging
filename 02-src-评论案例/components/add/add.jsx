@@ -1,22 +1,21 @@
 import React,{Component} from "react";
+import uuid from 'uuid'
 export default class Add extends Component{
 	add = () =>{
 	// //    1.获取用户输入
-	// 	console.log(this.name)
-
-	// 	console.log(value)
 		const name = this.name.value;
-		const {value} = this.name
-	// 	const content = this.content.value;
-		console.log(this.refs.input1.value)
+		const content = this.content.value;
 	//	2.检验数据
-	// 	if(!name.trim() || !content.trim()){
-	// 	   alert('内容和名字都不能为空')
-	// 		return;//代码逻辑也要停下
-	// 	}
+		if(!name.trim() || !content.trim()){
+		   alert('内容和名字都不能为空')
+			return;//代码逻辑也要停下
+		}
 	//	3.更新state
-
+	//	此方法用于添加一个评论,需要接收一个评论对象
+		this.props.addComment({id:uuid(),name,content})
 	//	4.清空
+		this.name.value = '';
+		this.content.value = '';
 	}
 	render() {
 		return (
