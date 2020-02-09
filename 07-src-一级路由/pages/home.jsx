@@ -6,7 +6,6 @@ export default class Home extends React.Component {
 	}
 
 	render() {
-		console.log(this)
 		return (
 			<h3>我是Home的内容</h3>
 		);
