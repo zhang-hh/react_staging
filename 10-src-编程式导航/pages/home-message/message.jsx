@@ -21,16 +21,16 @@ class Message extends Component {
 	pushShow = (id) =>{
 		//this.props.history专门用来展示浏览器的历史记录
 		this.props.history.push(`/home/message/detail/${id}`)
-	}
+	};
 	replaceShow = (id) =>{
 		this.props.history.replace(`/home/message/detail/${id}`)
-	}
+	};
 	forword = () =>{
 		this.props.history.goForward();
-	}
+	};
 	back = () => {
 		this.props.history.goBack();
-	}
+	};
 	render() {
 		return (
 			<div>
